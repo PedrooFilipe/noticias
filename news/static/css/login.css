@@ -1,0 +1,23 @@
+main {
+    height: 90vh;
+}
+
+form {
+    height: 100%;
+    display: flex;
+    width: 20%;
+    flex-direction: column;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.login-inputs {
+    display: flex;
+    flex-direction: column;
+}
+
+.login-buttons {
+    margin-top: 2%;
+    display: flex;
+    gap: 10%;
+}

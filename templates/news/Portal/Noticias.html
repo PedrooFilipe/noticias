@@ -1,0 +1,92 @@
+{% load static %}
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://kit.fontawesome.com/83ffba3676.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <title>Inicio</title>
+</head>
+
+<body>
+
+<header>
+    <nav>
+        <img src="{% static 'img/logo.svg' %}">
+        <div class="menu-container">
+            <ul>
+                <li><a href="#">INÍCIO</a></li>
+                <li><a href="#">SOBRE</a></li>
+                <li><a href="#">FALE CONOSCO</a></li>
+            </ul>
+        </div>
+
+    </nav>
+</header>
+
+
+<main>
+
+{#    listar as noticias baseado na rota, podendo pegar as categorias#}
+    {%  %}
+    
+</main>
+
+<aside>
+    Listar as mais lidas
+</aside>
+
+
+<div class="contact">
+    <div class="contact-form">
+        <span id="form-text">Contate-nos</span>
+        <form>
+            <label>Nome</label>
+            <input type="text" name="name" id="name"/>
+            <label>Email</label>
+            <input type="text" name="email" id="email"/>
+            <label>Telefone</label>
+            <input type="text" name="phone" id="phone"/>
+            <label>Comentários</label>
+            <textarea name="comments" id="comments" rows="8"> </textarea>
+            <button>ENVIAR</button>
+        </form>
+    </div>
+</div>
+
+
+<footer>
+    <nav>
+        <!-- Explorar -->
+        <div class="footer-content">
+            <ul>
+                <li><a href="#">INÍCIO</a></li>
+                <li><a href="#">SOBRE</a></li>
+                <li><a href="#">FALE CONOSCO</a></li>
+            </ul>
+        </div>
+
+        <!-- Contatos -->
+        <div class="footer-content">
+            <ul>
+                <li>(82) 99386-6397</li>
+                <li>filipe.pedroads@gmail.com</li>
+                <li>
+                    <div class="contact-div">
+                        <i class="fa-brands fa-facebook"></i>
+                        <i class="fa-brands fa-instagram"></i>
+                        <i class="fa-brands fa-linkedin"></i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+
+    </nav>
+</footer>
+
+</body>
+</html>

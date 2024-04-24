@@ -1,0 +1,46 @@
+{% extends "news/Main.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div>
+            <label>Pesquisar</label>
+            <input type="text"  />
+            
+            
+             <a href={% url 'createCategory' %}>Cadastrar</a>
+        </div>
+    <div>
+        <table>
+            <tr>
+                <th>Código</th>
+                <th>Descrição</th>
+            </tr>
+            <tbody>
+            {% for category in categories %}
+                <tr>
+                    <td>
+                        {{ category.id }}
+                    </td>
+
+                    <td>
+                        {{ category.description }}
+                    </td>
+
+                    <td>
+                        <a href={% url 'editCategory' category.id %}>Editar </a>
+                        <a href={% url 'deleteCategory' category.id %}>Excluir </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+
+        </table>
+    </div>
+        
+    </div>
+
+{% endblock %}

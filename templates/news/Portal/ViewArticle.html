@@ -1,0 +1,72 @@
+{% load static %}
+<!DOCTYPE html >
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/viewArticle.css' %}">
+    <script src="https://kit.fontawesome.com/83ffba3676.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <title>Inicio</title>
+</head>
+
+<body>
+
+<header>
+    <div class="header-content">
+        <a href={% url 'index' %}>
+            <img src="{% static 'img/logo.svg' %}">
+        </a>
+        <form class="form-search" autocomplete="off">
+            <input type="text" name="search">
+            <button>Pesquisar</button>
+        </form>
+    </div>
+
+</header>
+
+<nav>
+    <div class="menu-container">
+        <ul>
+            <li><a href={% url 'index' %}>INÍCIO</a></li>
+            <li><a href="#">NOTÍCIAS</a></li>
+            {% for category in categories %}
+                <li><a href="#">{{ category.description }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+
+</nav>
+
+<div class="view-container">
+
+    <main>
+        <h1>{{ article.title }}</h1>
+        <h2>{{ article.subtitle }}</h2>
+
+        <img src={{ article.thumb.url }}/>
+
+        <p>
+            {{ article.text|linebreaks }}
+        </p>
+    </main>
+
+    <aside>
+
+        {% for article in articles %}
+
+            <div class="aside-new">
+                <img src={{ article.thumb.url }}>
+                <h3>{{ article.title }}</h3>
+            </div>
+
+        {% endfor %}
+
+    </aside>
+</div>
+
+</body>
+</html>

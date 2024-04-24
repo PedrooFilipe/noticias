@@ -1,0 +1,76 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="https://kit.fontawesome.com/83ffba3676.js" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+    <title>Inicio</title>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <a href={% url 'index' %}>
+            <img src="{% static 'img/logo.svg' %}">
+        </a>
+        <form class="form-search" autocomplete="off">
+            <input type="text" name="search">
+            <button>Pesquisar</button>
+        </form>
+    </div>
+
+</header>
+
+<nav>
+    <div class="menu-container">
+        <ul>
+            <li><a href={% url 'index' %}>INÍCIO</a></li>
+            <li><a href="#">NOTÍCIAS</a></li>
+            {% for category in categories %}
+                <li><a href="#">{{ category.description }}</a></li>
+            {% endfor %}
+
+        </ul>
+    </div>
+
+</nav>
+
+
+{% block content %}
+{% endblock %}
+
+
+<footer>
+    <!-- Explorar -->
+    <div class="footer-content">
+        <ul>
+            <li><a href={% url 'index' %}>INÍCIO</a></li>
+            <li><a href="#">NOTÍCIAS</a></li>
+            {% for category in categories %}
+                <li><a href="#">{{ category.description }}</a></li>
+            {% endfor %}
+        </ul>
+    </div>
+
+    <!-- Contatos -->
+    <div class="footer-content">
+        <ul>
+            <li>
+                <div class="contact-div">
+                    <i class="fa-brands fa-facebook"></i>
+                    <i class="fa-brands fa-instagram"></i>
+                    <i class="fa-brands fa-linkedin"></i>
+                </div>
+            </li>
+        </ul>
+    </div>
+</footer>
+
+</body>
+</html>

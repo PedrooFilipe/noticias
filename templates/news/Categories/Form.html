@@ -1,0 +1,19 @@
+{% extends "news/Main.html" %}
+
+{% block content %}
+
+    <div>
+        <form method="POST" action="">
+            {% csrf_token %}
+            <input type="hidden" name="save_category">
+            <input type="hidden" id="id" name="id" value={{ category.id }}/>
+            <label>Descrição
+                <input type="text" id="description" name="description" value={{ category.description }}>
+            </label>
+
+            <button>Salvar</button>
+            <a href={% url 'categories' %}>Voltar</a>
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "news/Main.html" %}
+
+{% block content %}
+    <div class="main-content">
+        <form method="POST" action="" enctype="multipart/form-data">
+            {% csrf_token %}
+            <input type="hidden" name="save_article">
+            <input type="hidden" id="id" name="id" value={{ article.id }}/>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="title">Titulo</label>
+                    <input type="text" class="form-control" id="titulo" name="title" placeholder="Título"
+                           value={{ article.title }}>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label for="slug">Subtitulo</label>
+                    <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Subtitulo"
+                           value={{ article.subtitle }}>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-8">
+                    <label for="slug">Slug</label>
+                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug"
+                           value={{ article.slug }}>
+                </div>
+                <div class="form-group col-md-4">
+                    <label for="category">Categoria</label>
+                    <select name="category" class="form form-control">
+                        {% if article.id != None %}
+                            <option selected="selected"
+                                    value={{ category.id }}>{{ article.category.description }} </option>
+                        {% endif %}
+                        {% for category in categories %}
+                            <option value={{ category.id }}>{{ category.description }}</option>
+                        {% endfor %}
+
+                    </select>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="form-group col-md-6">
+                    <label for="slug">Slug</label>
+
+                    <input type="file" class="form-control" name="image" value={{ article.thumb.url }}/>
+
+                </div>
+                <div class="form-group col-md-6">
+                    <label for="category">Destaque</label>
+                    <input class="form-check-input" type="checkbox" name="highlight" id="highlight" value={{ article.highlight }}>
+                </div>
+            </div>
+
+            <label>
+                Corpo da notícia
+            </label>
+            <textarea class="form-control" name="text" id="text" rows="8">{{ article.text }}</textarea>
+
+            <div class="navigation">
+                <button class="btn btn-primary">Salvar</button>
+                <a class="btn btn-secondary" href={% url 'articles' %}>Voltar</a>
+            </div>
+
+        </form>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends "news/Main.html" %}
+
+{% block content %}
+
+    <div class="container">
+        <div>
+            <label>Pesquisar</label>
+            <input type="text"  />
+            
+            
+             <a href={% url 'createArticles' %}>Cadastrar</a>
+        </div>
+    <div>
+        <table>
+            <tr>
+                <th>Código</th>
+                <th>Titulo</th>
+                <th>Slug</th>
+                <th>Postado</th>
+                <th>Criado</th>
+                <th>Ações</th>
+            </tr>
+            <tbody>
+            {% for article in articles %}
+                <tr>
+                    <td>
+                        {{ article.id }}
+                    </td>
+
+                    <td>
+                        {{ article.title }}
+                    </td>
+
+                    <td>
+                        {{ article.slug }}
+                    </td>
+
+                    <td>
+                        {{ article.posted }}
+                    </td>
+
+                    <td>
+                        {{ article.timestamp }}
+                    </td>
+
+                    <td>
+                        <a href={% url 'editArticles' article.id %}>Editar </a>
+                        <a href={% url 'deleteArticles' article.id %}>Excluir </a>
+                    </td>
+                </tr>
+
+            {% endfor %}
+
+            </tbody>
+
+
+        </table>
+    </div>
+        
+    </div>
+
+
+
+
+
+{% endblock %}
