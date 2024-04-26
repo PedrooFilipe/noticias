@@ -2,65 +2,68 @@
 
 {% block content %}
 
-    <div class="container">
-        <div>
-            <label>Pesquisar</label>
-            <input type="text"  />
-            
-            
-             <a href={% url 'createArticles' %}>Cadastrar</a>
+    <div class="max-w-10/12 w-10/12">
+        <header>
+            Publicações
+        </header>
+        <div class="flex justify-between mt-8">
+            <div class="">
+                <label>Pesquisar</label>
+                <input type="text"/>
+            </div>
+            <a href={% url 'createArticles' %}>Cadastrar</a>
         </div>
-    <div>
-        <table>
-            <tr>
-                <th>Código</th>
-                <th>Titulo</th>
-                <th>Slug</th>
-                <th>Postado</th>
-                <th>Criado</th>
-                <th>Ações</th>
-            </tr>
-            <tbody>
-            {% for article in articles %}
+        <div class="mt-8 p-4 bg-gray-100 rounded-md">
+            <table class="table-auto">
                 <tr>
-                    <td>
-                        {{ article.id }}
-                    </td>
-
-                    <td>
-                        {{ article.title }}
-                    </td>
-
-                    <td>
-                        {{ article.slug }}
-                    </td>
-
-                    <td>
-                        {{ article.posted }}
-                    </td>
-
-                    <td>
-                        {{ article.timestamp }}
-                    </td>
-
-                    <td>
-                        <a href={% url 'editArticles' article.id %}>Editar </a>
-                        <a href={% url 'deleteArticles' article.id %}>Excluir </a>
-                    </td>
+                    <th>Código</th>
+                    <th>Titulo</th>
+                    <th>Slug</th>
+                    <th>Postado</th>
+                    <th>Criado</th>
+                    <th>Ações</th>
                 </tr>
+                <tbody>
+                {% for article in articles %}
+                    <tr class="border-b border-black">
+                        <td class="w-1/12">
+                            {{ article.id }}
+                        </td>
 
-            {% endfor %}
+                        <td class="w-5/12">
+                            {% if article.title. > 1 %}
+                                <p>Teste</p>
+                            {% else %}
+                                {{ article.title.count  }}
+                            {% endif %}
+                        </td>
 
-            </tbody>
+                        <td class="w-3/12">
+                            {{ article.slug }}
+                        </td>
+
+                        <td class="w-1/12">
+                            {{ article.posted }}
+                        </td>
+
+                        <td class="w-4/12">
+                            {{ article.timestamp }}
+                        </td>
+
+                        <td class="w-1/12">
+                            <a href={% url 'editArticles' article.id %}><i class="fa-solid fa-pen-to-square"></i> </a>
+                            <a href={% url 'deleteArticles' article.id %}><i class="fa-solid fa-trash"></i> </a>
+                        </td>
+                    </tr>
+
+                {% endfor %}
+
+                </tbody>
 
 
-        </table>
+            </table>
+        </div>
+
     </div>
-        
-    </div>
-
-
-
-
 
 {% endblock %}
