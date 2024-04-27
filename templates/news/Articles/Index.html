@@ -4,7 +4,7 @@
 
     <div class="max-w-10/12 w-10/12">
         <header>
-            Categorias
+            Publicações
         </header>
         <div class="search-header">
             <div class="">
@@ -17,17 +17,17 @@
         </div>
         <div class="table-container">
             <table class="custom-table">
-                <tr>
-                    <th>Código</th>
-                    <th>Titulo</th>
-                    <th>Slug</th>
-                    <th>Postado</th>
-                    <th>Criado</th>
-                    <th>Ações</th>
-                </tr>
+                <thead>
+                <th>Código</th>
+                <th>Titulo</th>
+                <th>Slug</th>
+                <th>Postado</th>
+                <th>Criado</th>
+                <th>Ações</th>
+                </thead>
                 <tbody>
                 {% for article in articles %}
-                    <tr class=" border-b border-black h-16">
+                    <tr class=" border-b border-black">
                         <td class="w-1/12">
                             {{ article.id }}
                         </td>
@@ -58,6 +58,18 @@
 
                 </tbody>
             </table>
+        </div>
+
+        <div class="flex flex-row-reverse">
+            <div class="flex">
+                <button class="">
+                    1
+                </button>
+
+                <p>de</p>
+
+                <button>5</button>
+            </div>
         </div>
 
     </div>

@@ -1,36 +1,39 @@
 {% extends "news/Main.html" %}
 
 {% block content %}
-    <div class="main-content">
-        <form method="POST" action="" enctype="multipart/form-data">
+    <div class="flex flex-col w-10/12">
+        <header>
+            Criar publicação
+        </header>
+        <form class="flex flex-col" method="POST" action="" enctype="multipart/form-data">
             {% csrf_token %}
             <input type="hidden" name="save_article">
             <input type="hidden" id="id" name="id" value={{ article.id }}/>
 
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="title">Titulo</label>
-                    <input type="text" class="form-control" id="titulo" name="title" placeholder="Título"
+            <div class="flex flex-wrap">
+                <div class="m-1 w-[48%]">
+                    <label for="title">Título</label>
+                    <input type="text" class="w-full rounded-md" id="titulo" name="title" placeholder="Título"
                            value={{ article.title }}>
                 </div>
 
-                <div class="form-group col-md-6">
+                <div class="m-1 w-[48%]">
                     <label for="slug">Subtitulo</label>
-                    <input type="text" class="form-control" id="subtitle" name="subtitle" placeholder="Subtitulo"
+                    <input type="text" class="w-full rounded-md" id="subtitle" name="subtitle" placeholder="Subtitulo"
                            value={{ article.subtitle }}>
                 </div>
 
             </div>
 
-            <div class="row">
-                <div class="form-group col-md-8">
+            <div class="flex flex-wrap">
+                <div class="m-1 w-[48%]">
                     <label for="slug">Slug</label>
-                    <input type="text" class="form-control" id="slug" name="slug" placeholder="Slug"
+                    <input type="text" class="w-full rounded-md" id="slug" name="slug" placeholder="Slug"
                            value={{ article.slug }}>
                 </div>
-                <div class="form-group col-md-4">
+                <div class="m-1 w-[48%]">
                     <label for="category">Categoria</label>
-                    <select name="category" class="form form-control">
+                    <select name="category" class="w-full rounded-md">
                         {% if article.id != None %}
                             <option selected="selected"
                                     value={{ category.id }}>{{ article.category.description }} </option>
@@ -43,28 +46,31 @@
                 </div>
             </div>
 
-            <div class="row">
-                <div class="form-group col-md-6">
-                    <label for="slug">Slug</label>
+            <div class="flex flex-wrap">
+                <div class="m-1 w-[48%] flex flex-col">
+                    <label for="slug">Capa</label>
 
-                    <input type="file" class="form-control" name="image" value={{ article.thumb.url }}/>
+                    <input type="file" class="m-1 w-6/12" name="image" value={{ article.thumb.url }}/>
 
                 </div>
                 <div class="form-group col-md-6">
                     <label for="category">Destaque</label>
-                    <input class="form-check-input" type="checkbox" name="highlight" id="highlight" value={{ article.highlight }}>
+                    <input class="  " type="checkbox" name="highlight" id="highlight" value={{ article.highlight }}>
                 </div>
             </div>
 
-            <label>
-                Corpo da notícia
-            </label>
-            <textarea class="form-control" name="text" id="text" rows="8">{{ article.text }}</textarea>
+            <div class="m-1 flex flex-col">
+                <label>
+                    Corpo da notícia
+                </label>
+                <textarea class="rounded" name="text" id="text" rows="8">{{ article.text }}</textarea>
 
-            <div class="navigation">
-                <button class="btn btn-primary">Salvar</button>
-                <a class="btn btn-secondary" href={% url 'articles' %}>Voltar</a>
+                <div class="form-footer">
+                    <button class="button-primary">Salvar</button>
+                    <a class="button-primary" href={% url 'articles' %}>Voltar</a>
+                </div>
             </div>
+
 
         </form>
     </div>
