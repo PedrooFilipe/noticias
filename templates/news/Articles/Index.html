@@ -4,17 +4,19 @@
 
     <div class="max-w-10/12 w-10/12">
         <header>
-            Publicações
+            Categorias
         </header>
-        <div class="flex justify-between mt-8">
+        <div class="search-header">
             <div class="">
                 <label>Pesquisar</label>
-                <input type="text"/>
+                <input class="rounded-md" type="text"/>
             </div>
-            <a href={% url 'createArticles' %}>Cadastrar</a>
+            <a href={% url 'createArticles' %}>
+                <button class="button-primary">Cadastrar</button>
+            </a>
         </div>
-        <div class="mt-8 p-4 bg-gray-100 rounded-md">
-            <table class="table-auto">
+        <div class="table-container">
+            <table class="custom-table">
                 <tr>
                     <th>Código</th>
                     <th>Titulo</th>
@@ -25,28 +27,24 @@
                 </tr>
                 <tbody>
                 {% for article in articles %}
-                    <tr class="border-b border-black">
+                    <tr class=" border-b border-black h-16">
                         <td class="w-1/12">
                             {{ article.id }}
                         </td>
 
-                        <td class="w-5/12">
-                            {% if article.title. > 1 %}
-                                <p>Teste</p>
-                            {% else %}
-                                {{ article.title.count  }}
-                            {% endif %}
+                        <td class="w-4/12">
+                            {{ article.title | truncatechars:50 }}
                         </td>
 
-                        <td class="w-3/12">
-                            {{ article.slug }}
+                        <td class="w-4/12">
+                            {{ article.slug | truncatechars:50 }}
                         </td>
 
                         <td class="w-1/12">
                             {{ article.posted }}
                         </td>
 
-                        <td class="w-4/12">
+                        <td class="w-2/12">
                             {{ article.timestamp }}
                         </td>
 
@@ -59,8 +57,6 @@
                 {% endfor %}
 
                 </tbody>
-
-
             </table>
         </div>
 

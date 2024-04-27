@@ -2,17 +2,22 @@
 
 {% block content %}
 
-    <div>
-        <form method="POST" action="">
+    <div class="flex flex-col w-10/12">
+        <header>Criar Categoria</header>
+        <form method="POST" action="" class="mt-8">
             {% csrf_token %}
             <input type="hidden" name="save_category">
             <input type="hidden" id="id" name="id" value={{ category.id }}/>
             <label>Descrição
-                <input type="text" id="description" name="description" value={{ category.description }}>
+                <input class="rounded-md" type="text" id="description" name="description"
+                       value={{ category.description }}>
             </label>
 
-            <button>Salvar</button>
-            <a href={% url 'categories' %}>Voltar</a>
+            <div class="form-footer">
+                <button class="button-primary">Salvar</button>
+                <a class="button-primary" href={% url 'categories' %}>Voltar</a>
+            </div>
+
         </form>
     </div>
 

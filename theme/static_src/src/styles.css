@@ -1,3 +1,50 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+
+  /*Main*/
+
+  .nav-li {
+    @apply flex items-center justify-center;
+  }
+
+  .nav-a {
+    @apply w-10/12 block hover:bg-[#50506a] rounded-md;
+  }
+
+  .nav-button {
+    @apply w-full rounded-md text-white text-left p-1.5;
+  }
+
+  /*Fim main*/
+
+  /*Crud*/
+  .search-header {
+    @apply flex justify-between mt-8 bg-gray-100 p-4 rounded-md;
+  }
+
+  .form-footer {
+    @apply mt-8 bg-gray-100 p-4 rounded-md w-full;
+  }
+
+  .custom-table {
+    @apply table-fixed m-3;
+  }
+
+  .button-primary {
+    @apply bg-[#2E2E48] p-2.5 text-white rounded-md;
+  }
+
+  .table-container {
+    @apply mt-8 p-4 bg-gray-100 rounded-md;
+  }
+
+  .custom-table-row {
+     @apply border-b border-black h-16;
+  }
+
+  /*Fim crud*/
+
+}

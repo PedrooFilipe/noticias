@@ -21,9 +21,9 @@
 </head>
 <body>
 
-<main class="h-screen">
+<main class="h-screen overflow-hidden">
 
-    <header class="bg-[#2E2E48] h-14 flex justify-between items-center ">
+    <header class="bg-[#2E2E48] h-14 flex justify-between items-center">
         <img class="w-40" alt="logo" class="ml-6" src={% static 'img/logo.svg' %}/>
         <a class="mr-6 text-white" href={% url 'logout' %}>
             <button>Sair</button>
@@ -33,31 +33,33 @@
     <div class="flex h-full">
         <nav class="w-2/12 bg-[#2E2E48] pt-7 border-r border-black">
             <ul>
-                <li class="flex items-center justify-center"><a class="w-10/12 block hover:bg-[#50506a] rounded-md"
-                                                                href="#">
-                    <button type="button" class="w-full rounded-md text-white text-left p-1.5">
-                        <i class="fa-solid fa-house mr-2"></i>Início
+                <li class="nav-li">
+                    <a class="w-10/12 block hover:bg-[#50506a] rounded-md"
+                       href="#">
+                        <button class="nav-button" type="button">
+                            <i class="fa-solid fa-house mr-2"></i>Início
+                        </button>
+                    </a></li>
 
-                    </button>
-                </a></li>
+                <li class="nav-li">
+                    <a class="w-10/12 block hover:bg-[#50506a] rounded-md"
+                       href={% url 'categories' %}>
+                        <button class="nav-button" type="button">
+                            <i class="fa-solid fa-list mr-2"></i>Categorias
+                        </button>
+                    </a></li>
 
-                <li class="flex items-center justify-center"><a class="w-10/12 block hover:bg-[#50506a] rounded-md"
-                                                                href={% url 'categories' %}>
-                    <button class="w-full rounded-md text-white text-left p-1.5" type="button">
-                        <i class="fa-solid fa-list mr-2"></i>Categorias
-                    </button>
-                </a></li>
-
-                <li class="flex items-center justify-center"><a class="w-10/12 block hover:bg-[#50506a] rounded-md"
-                                                                href={% url 'articles' %}>
-                    <button class="w-full rounded-md text-white text-left p-1.5" type="button">
-                        <i class="fa-solid fa-newspaper mr-2"></i>Publicações
-                    </button>
-                </a></li>
+                <li class="nav-li">
+                    <a class="nav-a"
+                       href={% url 'articles' %}>
+                        <button class="nav-button" type="button">
+                            <i class="fa-solid fa-newspaper mr-2"></i>Publicações
+                        </button>
+                    </a></li>
             </ul>
         </nav>
 
-        <div class="pt-7 justify-center flex">
+        <div class="pt-7 justify-center flex w-full">
             {% block content %}
             {% endblock %}
         </div>

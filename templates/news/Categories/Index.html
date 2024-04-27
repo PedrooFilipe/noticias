@@ -2,45 +2,53 @@
 
 {% block content %}
 
-    <div class="container">
-        <div>
-            <label>Pesquisar</label>
-            <input type="text"  />
-            
-            
-             <a href={% url 'createCategory' %}>Cadastrar</a>
+    <div class="max-w-10/12 w-10/12">
+        <header>
+            Categorias
+        </header>
+        <div class="search-header">
+            <div class="">
+                <label>Pesquisar</label>
+                <input class="rounded-md" type="text"/>
+            </div>
+
+            <a href={% url 'createCategory' %}>
+                <button class="button-primary">Cadastrar</button>
+            </a>
         </div>
-    <div>
-        <table>
-            <tr>
-                <th>Código</th>
-                <th>Descrição</th>
-            </tr>
-            <tbody>
-            {% for category in categories %}
+
+        <div class="table-container">
+            <table class="custom-table">
+                <thead>
                 <tr>
-                    <td>
-                        {{ category.id }}
-                    </td>
-
-                    <td>
-                        {{ category.description }}
-                    </td>
-
-                    <td>
-                        <a href={% url 'editCategory' category.id %}>Editar </a>
-                        <a href={% url 'deleteCategory' category.id %}>Excluir </a>
-                    </td>
+                    <th>Código</th>
+                    <th>Descrição</th>
+                    <th>Ações</th>
                 </tr>
+                </thead>
+                <tbody>
+                {% for category in categories %}
+                    <tr>
+                        <td class="w-2/12">
+                            {{ category.id }}
+                        </td>
 
-            {% endfor %}
+                        <td class="w-10/12">
+                            {{ category.description }}
+                        </td>
 
-            </tbody>
+                        <td class="1/12">
+                            <a href={% url 'editCategory' category.id %}><i class="fa-solid fa-pen-to-square"></i></a>
+                            <a href={% url 'deleteCategory' category.id %}><i class="fa-solid fa-trash"></i></a>
+                        </td>
+                    </tr>
 
+                {% endfor %}
+                </tbody>
 
-        </table>
-    </div>
-        
+            </table>
+        </div>
+
     </div>
 
 {% endblock %}
