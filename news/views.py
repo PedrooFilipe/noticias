@@ -2,6 +2,7 @@ from django.contrib.auth import authenticate
 from django.contrib.auth import login as djangoLogin
 from django.contrib.auth import logout as djangoLogout
 from django.contrib.auth.decorators import login_required
+from django.core.paginator import Paginator
 from django.db.models import Q
 from django.shortcuts import render, get_object_or_404, redirect
 from .models import Article, Comment, Category
@@ -41,8 +42,18 @@ def logout(request):
 # articles
 @login_required(login_url='login')
 def get_articles(request):
+    articles = Article.objects.all()
+
+    current_page = request.GET.get('page')
+
+    paginator = Paginator(articles, 1)
+
+    page = paginator.get_page(current_page)
+
+
+
     return render(request, 'news/Articles/Index.html',
-                  context={'articles': Article.objects.all()})
+                  context={'page': page})
 
 
 def search_articles(request, search):
@@ -98,7 +109,6 @@ def create_articles(request):
         # print(request.POST.get('highlight', ''))
         article = Article(title=request.POST.get('title', ''), slug=request.POST.get('slug', ''),
                           text=request.POST.get('text', ''), category=category,
-                          highlight=request.POST.get('highlight', ''),
                           thumb=request.FILES.get('image', ''))
 
         article.save()

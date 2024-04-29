@@ -26,18 +26,18 @@
                 <th>Ações</th>
                 </thead>
                 <tbody>
-                {% for article in articles %}
+                {% for article in page.object_list %}
                     <tr class=" border-b border-black">
                         <td class="w-1/12">
                             {{ article.id }}
                         </td>
 
                         <td class="w-4/12">
-                            {{ article.title | truncatechars:50 }}
+                            {{ article.title | truncatechars:40 }}
                         </td>
 
                         <td class="w-4/12">
-                            {{ article.slug | truncatechars:50 }}
+                            {{ article.slug | truncatechars:40 }}
                         </td>
 
                         <td class="w-1/12">
@@ -60,17 +60,102 @@
             </table>
         </div>
 
-        <div class="flex flex-row-reverse">
-            <div class="flex">
-                <button class="">
-                    1
-                </button>
+        {% if page.has_previous %}
 
-                <p>de</p>
+            {% if request.GET.search %}
+                <a href="?page={{ page.previous_page_number }}&&search={{ request.GET.search }}">Anterior </a>
+            {% else %}
+                <a href="?page={{ page.previous_page_number }}">Anterior</a>
+            {% endif %}
 
-                <button>5</button>
-            </div>
-        </div>
+        {% endif %}
+
+    
+    {% for page_number in page.paginator.page_range %}
+        <a href="?page={{ page_number }}"> {{ page_number}} </a>
+    {% endfor %}
+    
+    
+{#    Verificar se é a página atual e desativar#}
+{#    {% if page_number == page.number %}#}
+{#    {% endif %}#}
+    
+
+{#        {% if page.paginator.num_pages > 5 %}#}
+{##}
+{#            <a href="?page=1">1 </a>#}
+{#            <a href="?page=2">2 </a>#}
+{##}
+{#            <a href="">...</a>#}
+{#            <a href="?page={{ page.paginator.num_pages|add:"-2" }}"> {{ page.paginator.num_pages|add:"-2" }} </a>#}
+{#            <a href="?page={{ page.paginator.num_pages|add:"-1" }}">{{ page.paginator.num_pages|add:"-1" }} </a>#}
+{##}
+{##}
+{##}
+{##}
+{##}
+{##}
+            {#    {% if page.paginator.count %}#}
+            {#        <p>Funcionou</p>#}
+{#        {% endif %}#}
+
+
+
+
+        {% if page.has_next %}
+
+            {% if request.GET.search %}
+                <a href="?page={{ page.next_page_number }}&&search={{ request.GET.search }}">Próxima </a>
+            {% else %}
+                <a href="?page={{ page.next_page_number }}">Próxima</a>
+            {% endif %}
+
+        {% endif %}
+
+
+        {#        <div class="my-4 flex flex-row-reverse">#}
+        {#            <div class="flex">#}
+        {##}
+        {##}
+        {#                <ul class="inline-flex">#}
+        {#                    <li class="flex items-center bg-gray-100 px-2 h-8 hover:cursor-pointer rounded-s-md">#}
+        {#                        <button>#}
+        {#                            <a href="#">Anterior#}
+        {#                            </a>#}
+        {#                        </button>#}
+        {#                    </li>#}
+        {##}
+        {#                    <li class="flex items-center hover:bg-gray-200 bg-gray-100 px-2 h-8 hover:cursor-pointer">#}
+        {#                        <a href="#">#}
+        {#                            <button>1</button>#}
+        {#                        </a>#}
+        {#                    </li>#}
+        {##}
+        {#                    <li class="flex items-center hover:bg-gray-200 bg-gray-100 px-2 h-8 hover:cursor-pointer">#}
+        {#                        <a href="#">#}
+        {#                            <button>2</button>#}
+        {#                        </a>#}
+        {#                    </li>#}
+        {#                    <li class="flex items-center hover:bg-gray-200 bg-gray-100 px-2 h-8 hover:cursor-pointer">#}
+        {#                        <a href="#">#}
+        {#                            <button>3</button>#}
+        {#                        </a>#}
+        {#                    </li>#}
+        {#                    <li class="flex items-center hover:bg-gray-200 bg-gray-100 px-2 h-8 hover:cursor-pointer">#}
+        {#                        <a href="#">#}
+        {#                            <button>4</button>#}
+        {#                        </a>#}
+        {#                    </li>#}
+        {##}
+        {#                    <li class="flex items-center hover:bg-gray-200 bg-gray-100 px-2 h-8 hover:cursor-pointer rounded-e-md">#}
+        {#                        <button>#}
+        {#                            <a href="#">Próxima#}
+        {#                            </a>#}
+        {#                        </button>#}
+        {#                    </li>#}
+        {#                </ul>#}
+        {#            </div>#}
+        {#        </div>#}
 
     </div>
 
