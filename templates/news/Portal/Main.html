@@ -1,49 +1,56 @@
 {% load static %}
+{% load static tailwind_tags %}
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
     <script src="https://kit.fontawesome.com/83ffba3676.js" crossorigin="anonymous"></script>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
+
+    {% tailwind_css %}
     <title>Inicio</title>
 </head>
 <body>
 
-<header>
-    <div class="header-content">
+<header class="bg-[#2874A0] h-14 w-full">
+    <div class="flex justify-around items-center h-full">
         <a href={% url 'index' %}>
-            <img src="{% static 'img/logo.svg' %}">
+            <img class="w-40 " src="{% static 'img/logo.svg' %}">
         </a>
-        <form class="form-search" autocomplete="off">
-            <input type="text" name="search">
-            <button>Pesquisar</button>
+        <form class="outline-none" autocomplete="off">
+            <label class="text-white">Pesquisar</label>
+            <input class="rounded-md" type="text" name="search">
         </form>
     </div>
 
 </header>
 
-<nav>
-    <div class="menu-container">
-        <ul>
-            <li><a href={% url 'index' %}>INÍCIO</a></li>
-            <li><a href="#">NOTÍCIAS</a></li>
-            {% for category in categories %}
-                <li><a href="#">{{ category.description }}</a></li>
-            {% endfor %}
+{#Ajustar para o estilo dos li ficar separado #}
+<nav class="hidden justify-center w-full my-4 sm:flex">
 
+    <div class="w-10/12 flex justify-center border-b border-black">
+        <ul class="sm:mb-2 sm:inline">
+            <li class="sm:inline mx-1"><a href={% url 'index' %}>INÍCIO</a></li>
+            <li class="sm:inline mx-1"><a href="#">NOTÍCIAS</a></li>
+            {% for category in categories %}
+                <li class="sm:inline mx-1"><a href="#">{{ category.description }}</a></li>
+            {% endfor %}
         </ul>
     </div>
 
 </nav>
 
 
-{% block content %}
-{% endblock %}
+<div class="flex flex-col items-center sm:flex-row sm:w-10/12 sm:justify-center sm:m-auto sm:items-start">
+    {% block content %}
+    {% endblock %}
+</div>
 
 
 <footer>
