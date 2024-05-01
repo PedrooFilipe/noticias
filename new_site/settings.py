@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'news.apps.NewsConfig',
-    'bootstrap5',
     'tailwind',
     'theme.apps.ThemeConfig',
     'django_browser_reload'

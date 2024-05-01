@@ -23,7 +23,7 @@
         <a href={% url 'index' %}>
             <img class="w-40 " src="{% static 'img/logo.svg' %}">
         </a>
-        <form class="outline-none" autocomplete="off">
+        <form class="hidden sm:hidden md:block outline-none" autocomplete="off">
             <label class="text-white">Pesquisar</label>
             <input class="rounded-md" type="text" name="search">
         </form>
@@ -47,7 +47,7 @@
 </nav>
 
 
-<div class="flex flex-col items-center sm:flex-row sm:w-10/12 sm:justify-center sm:m-auto sm:items-start">
+<div class="flex flex-col items-center sm:flex-row md:w-10/12 sm:justify-center sm:m-auto sm:items-start">
     {% block content %}
     {% endblock %}
 </div>
