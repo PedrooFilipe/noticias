@@ -2,32 +2,47 @@
 {% load static %}
 {% block content %}
 
-    <main class="mt-4 w-11/12 sm:w-7/12 md:w-5/12">
-        <a href={% url 'viewArticle' highlight.slug %}>
-            <img class="rounded-md md:w-[570px] md:h-[400px]" src={{ highlight.thumb.url }}/>
-            <h1>{{ highlight.title }}</h1>
-        </a>
-    </main>
+    <div class="flex flex-col justify-center items-center lg:flex-row lg:items-start">
 
-    <aside class="flex flex-col sm:w-4/12 sm:ml-2 items-center">
-        {% for article in articles %}
+        <main class="flex flex-col items-center mt-4 md:w-10/12 lg:w-6/12 lg:mt-4">
+            <a class="flex flex-col w-11/12 lg:w-full" href={% url 'viewArticle' highlight.slug %}>
+                <img class="rounded-md md:w-full md:h-[400px]" src={{ highlight.thumb.url }}/>
+                <span class="rounded-sm w-fit text-xs bg-slate-400 text-white p-1 mt-1 md:hidden lg:hidden">DESTAQUE</span>
+                <h1 class="lg:text-3xl">{{ highlight.title }}</h1>
+            </a>
+        </main>
 
-{#            Verificar se realmente precisa dessa div por fora #}
-            <div class="flex flex-col mt-5 w-11/12">
-                <a href={% url 'viewArticle' article.slug %}>
-                    <div class="sm:flex sm:flex-row">
-                        <img class="rounded-md sm:w-2/4 sm:h-2/4 md:w-[160px] md:h-[110px]" src={{ article.thumb.url }}>
-                        <div class="sm:mx-3">
-                            <span class="text-gray-100">{{ article.category.description }}</span>
-                            <span class="article-aside-title">{{ article.title }}</span>
+        <aside class="flex flex-col items-center md:mt-7 md:items-start md:flex-row md:w-10/12
+                lg:flex lg:flex-col lg:w-4/12 lg:h-full lg:gap-7 lg:mt-4 lg:ml-5">
+            {% for article in articles %}
+
+                <div class="w-11/12 lg:w-full">
+                    <a href={% url 'viewArticle' article.slug %}>
+                        <div class="lg:flex lg:flex-row md:flex md:flex-col md:items-center lg:items-start">
+                            <img class="rounded-md md:w-[160px] md:h-[110px] lg:w-[160px] lg:h-[110px]"
+                                 src={{ article.thumb.url }}>
+                            <div class="sm:mx-3 w-full flex flex-col md:items-center mt-1 lg:items-start">
+                                <span class="w-fit rounded-sm text-xs bg-slate-400 text-white p-1 lg:p-1.5">{{ article.category.description }}</span>
+                                <span class="text-justify lg:text-sm 2xl:text-base">{{ article.title }}</span>
+                            </div>
+
                         </div>
+                    </a>
+                </div>
+            {% endfor %}
+        </aside>
+    </div>
 
-                    </div>
-                </a>
-            </div>
-
-
-        {% endfor %}
-    </aside>
+    <div class="flex flex-col items-center">
+        <div class="w-11/12">
+            <header>
+                As mais lidas
+            </header>
+            <a href="#">
+                <img href="" alt="capa">
+                <div></div>
+            </a>
+        </div>
+    </div>
 
 {% endblock %}

@@ -10,8 +10,9 @@ from .models import Article, Comment, Category
 
 def index(request):
     categories = Category.objects.filter(shouldBeDisplayed=True)
-    articles = Article.objects.all()
+    articles = Article.objects.filter(highlight=False)[:3]
     highlight = Article.objects.filter(highlight=True).order_by('timestamp').first()
+    # moreReads = Article.objects.filter(read=False).order_by('timestamp')
     return render(request, 'news/Portal/Index.html', context={
         'categories': categories,
         'articles': articles,
@@ -46,11 +47,9 @@ def get_articles(request):
 
     current_page = request.GET.get('page')
 
-    paginator = Paginator(articles, 1)
+    paginator = Paginator(articles, 10)
 
     page = paginator.get_page(current_page)
-
-
 
     return render(request, 'news/Articles/Index.html',
                   context={'page': page})
@@ -79,9 +78,10 @@ def edit_articles(request, article_id=None):
         article.title = request.POST.get('title', '')
         article.slug = request.POST.get('slug', '')
         article.text = request.POST.get('text', '')
-        article.thumb = request.FILES.get('image', '')
+        if request.FILES.get('image', ''):
+            article.thumb = request.FILES.get('image', '')
 
-        if (request.POST.get('category', '')):
+        if request.POST.get('category', ''):
             article.category = Category.objects.get(id=request.POST.get('category'))
 
         article.save()

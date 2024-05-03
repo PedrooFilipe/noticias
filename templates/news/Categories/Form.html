@@ -3,7 +3,7 @@
 {% block content %}
 
     <div class="flex flex-col w-10/12">
-        <header>Criar Categoria</header>
+        <header class="text-2xl font-bold">Criar Categoria</header>
         <form method="POST" action="" class="mt-8">
             {% csrf_token %}
             <input type="hidden" name="save_category">

@@ -47,37 +47,37 @@
 </nav>
 
 
-<div class="flex flex-col items-center sm:flex-row md:w-10/12 sm:justify-center sm:m-auto sm:items-start">
+<div class="flex flex-col">
     {% block content %}
     {% endblock %}
 </div>
 
 
-<footer>
-    <!-- Explorar -->
-    <div class="footer-content">
-        <ul>
-            <li><a href={% url 'index' %}>INÍCIO</a></li>
-            <li><a href="#">NOTÍCIAS</a></li>
-            {% for category in categories %}
-                <li><a href="#">{{ category.description }}</a></li>
-            {% endfor %}
-        </ul>
-    </div>
-
-    <!-- Contatos -->
-    <div class="footer-content">
-        <ul>
-            <li>
-                <div class="contact-div">
-                    <i class="fa-brands fa-facebook"></i>
-                    <i class="fa-brands fa-instagram"></i>
-                    <i class="fa-brands fa-linkedin"></i>
-                </div>
-            </li>
-        </ul>
-    </div>
-</footer>
+{#<footer>#}
+{#    <!-- Explorar -->#}
+{#    <div class="footer-content">#}
+{#        <ul>#}
+{#            <li><a href={% url 'index' %}>INÍCIO</a></li>#}
+{#            <li><a href="#">NOTÍCIAS</a></li>#}
+{#            {% for category in categories %}#}
+{#                <li><a href="#">{{ category.description }}</a></li>#}
+{#            {% endfor %}#}
+{#        </ul>#}
+{#    </div>#}
+{##}
+{#    <!-- Contatos -->#}
+{#    <div class="footer-content">#}
+{#        <ul>#}
+{#            <li>#}
+{#                <div class="contact-div">#}
+{#                    <i class="fa-brands fa-facebook"></i>#}
+{#                    <i class="fa-brands fa-instagram"></i>#}
+{#                    <i class="fa-brands fa-linkedin"></i>#}
+{#                </div>#}
+{#            </li>#}
+{#        </ul>#}
+{#    </div>#}
+{#</footer>#}
 
 </body>
 </html>
