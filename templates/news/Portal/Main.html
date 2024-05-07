@@ -23,7 +23,7 @@
         <a href={% url 'index' %}>
             <img class="w-40 " src="{% static 'img/logo.svg' %}">
         </a>
-        <form class="hidden sm:hidden md:block outline-none" autocomplete="off">
+        <form class="hidden sm:hidden md:block outline-none" autocomplete="off" action={% url 'searchArticles' %}>
             <label class="text-white">Pesquisar</label>
             <input class="rounded-md" type="text" name="search">
         </form>

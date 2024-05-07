@@ -12,12 +12,38 @@ def index(request):
     categories = Category.objects.filter(shouldBeDisplayed=True)
     articles = Article.objects.filter(highlight=False)[:3]
     highlight = Article.objects.filter(highlight=True).order_by('timestamp').first()
-    # moreReads = Article.objects.filter(read=False).order_by('timestamp')
+    more_reads = Article.objects.filter(viewCount__gt=0).order_by('viewCount')[:5]
+
     return render(request, 'news/Portal/Index.html', context={
         'categories': categories,
         'articles': articles,
-        'highlight': highlight
+        'highlight': highlight,
+        'more_reads': more_reads
     })
+
+
+def search_articles(request):
+    search = print(request.GET.get('search', ''))
+    if (search):
+        articles = Article.objects.filter(title__contains=search)
+    else:
+        articles = Article.objects.all()
+
+    return render(request, 'news/Portal/SearchArticles.html',
+                  context={'articles': articles})
+
+
+def view_article(request, slug):
+    # categories = Category.objects.filter(shouldBeDisplayed=True)
+    article = Article.objects.get(slug=slug)
+    articles = Article.objects.filter(
+        (Q(category__description=article.category.description) & ~Q(id=article.id)))
+
+    article.viewCount += 1
+    article.save()
+
+    return render(request, 'news/Portal/ViewArticle.html', context={'article': article,
+                                                                    'articles': articles})
 
 
 def login(request):
@@ -40,6 +66,7 @@ def logout(request):
     djangoLogout(request)
     return redirect('login')
 
+
 # articles
 @login_required(login_url='login')
 def get_articles(request):
@@ -54,21 +81,6 @@ def get_articles(request):
     return render(request, 'news/Articles/Index.html',
                   context={'page': page})
 
-
-def search_articles(request, search):
-    articles = Article.objects.filter()
-    return render(request, 'news/Articles/Index.html',
-                  context={'articles': Article.objects.all()})
-
-
-def view_article(request, slug):
-    categories = Category.objects.filter(shouldBeDisplayed=True)
-    article = Article.objects.get(slug=slug)
-    articles = Article.objects.filter(
-        (Q(category__description=article.category.description) & ~Q(id=article.id)))
-    return render(request, 'news/Portal/ViewArticle.html', context={'article': article,
-                                                                    'articles': articles,
-                                                                    'categories': categories})
 
 @login_required(login_url='login')
 def edit_articles(request, article_id=None):
@@ -116,6 +128,7 @@ def create_articles(request):
         return redirect('articles')
     else:
         return render(request, 'news/Articles/Form.html', context={'categories': Category.objects.all()})
+
 
 @login_required(login_url='login')
 def delete_articles(request, article_id):

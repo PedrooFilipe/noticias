@@ -13,11 +13,11 @@
         </main>
 
         <aside class="flex flex-col items-center md:mt-7 md:items-start md:flex-row md:w-10/12
-                lg:flex lg:flex-col lg:w-4/12 lg:h-full lg:gap-7 lg:mt-4 lg:ml-5">
+                lg:flex lg:flex-col lg:w-3/12 lg:h-full lg:gap-7 lg:mt-4 lg:ml-5">
             {% for article in articles %}
 
                 <div class="w-11/12 lg:w-full">
-                    <a href={% url 'viewArticle' article.slug %}>
+                    <a class="lg:block w-fit" href={% url 'viewArticle' article.slug %}>
                         <div class="lg:flex lg:flex-row md:flex md:flex-col md:items-center lg:items-start">
                             <img class="rounded-md md:w-[160px] md:h-[110px] lg:w-[160px] lg:h-[110px]"
                                  src={{ article.thumb.url }}>
@@ -33,15 +33,42 @@
         </aside>
     </div>
 
-    <div class="flex flex-col items-center">
-        <div class="w-11/12">
-            <header>
-                As mais lidas
-            </header>
-            <a href="#">
-                <img href="" alt="capa">
-                <div></div>
-            </a>
+
+    <div class="flex flex-col items-center mt-5 lg:mt-6">
+        <div class="w-11/12 lg:w-9/12 flex flex-col lg:flex lg:flex-row">
+            
+            <div class="flex lg:w-11/12 flex-col">
+                <header class="border-b border-black">
+                    <h1 class="lg: text-3xl">As mais lidas</h1>
+                </header>
+
+                <div class="mt-5">
+                    {% for more_read in more_reads %}
+
+                        <div class="w-12/12 lg:w-full ">
+                            <a class="lg:mt-10 lg:gap-5 w-fit" href={% url 'viewArticle' more_read.slug %}>
+                                <div class="lg:mb-7 lg:flex lg:flex-row md:flex md:flex-col md:items-center lg:items-start">
+                                    <img class="rounded-md md:w-[160px] md:h-[110px] lg:w-[160px] lg:h-[110px]"
+                                         src={{ more_read.thumb.url }}>
+                                    <div class="sm:mx-3 w-full flex flex-col md:items-center mt-1 lg:items-start">
+                                        <span class="w-fit rounded-sm text-xs bg-slate-400 text-white p-1 lg:p-1.5">{{ more_read.category.description }}</span>
+                                        <span class="text-justify lg:text-sm 2xl:text-base">{{ more_read.title }}</span>
+                                    </div>
+                                </div>
+                            </a>
+                        </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div id="mais-lidas" class="w-2/12">
+                <a href="#">
+                    <img href="" alt="capa">
+                    <div></div>
+                </a>
+            </div>
+
+
         </div>
     </div>
 

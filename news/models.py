@@ -19,6 +19,7 @@ class Article(models.Model):
     timestamp = models.DateTimeField(auto_now_add=True)
     highlight = models.BooleanField(default=False)
     category = models.ForeignKey(Category, on_delete=models.CASCADE, null=True)
+    viewCount = models.IntegerField(default=0)
 
 
 class Comment(models.Model):
