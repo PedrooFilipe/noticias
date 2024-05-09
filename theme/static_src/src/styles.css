@@ -20,6 +20,10 @@
 
   /*Fim main*/
 
+  .category-span {
+    @apply w-fit rounded-sm text-xs bg-slate-400 text-white p-1 lg:p-1.5;
+  }
+
   /*Crud*/
   .search-header {
     @apply flex justify-between mt-8 bg-gray-100 p-4 rounded-md;

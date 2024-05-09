@@ -37,9 +37,9 @@
     <div class="w-10/12 flex justify-center border-b border-black">
         <ul class="sm:mb-2 sm:inline">
             <li class="sm:inline mx-1"><a href={% url 'index' %}>INÍCIO</a></li>
-            <li class="sm:inline mx-1"><a href="#">NOTÍCIAS</a></li>
+            <li class="sm:inline mx-1"><a href={% url 'searchArticles' %}>NOTÍCIAS</a></li>
             {% for category in categories %}
-                <li class="sm:inline mx-1"><a href="#">{{ category.description }}</a></li>
+                <li class="sm:inline mx-1"><a href="category?category={{ category.description }}">{{ category.description }}</a></li>
             {% endfor %}
         </ul>
     </div>

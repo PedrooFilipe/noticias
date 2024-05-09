@@ -23,15 +23,24 @@ def index(request):
 
 
 def search_articles(request):
-    search = print(request.GET.get('search', ''))
+    categories = Category.objects.filter(shouldBeDisplayed=True)
+    search = request.GET.get('search', '')
     if (search):
         articles = Article.objects.filter(title__contains=search)
     else:
         articles = Article.objects.all()
 
     return render(request, 'news/Portal/SearchArticles.html',
-                  context={'articles': articles})
+                  context={'articles': articles, 'categories': categories})
 
+def articles_by_category(request):
+    category = request.GET.get('category', '')
+    print(category)
+    categories = Category.objects.filter(shouldBeDisplayed=True)
+    articles = Article.objects.filter(Q(category__description=category))
+
+    return render(request, 'news/Portal/SearchArticles.html',
+                  context={'articles': articles, 'categories': categories})
 
 def view_article(request, slug):
     # categories = Category.objects.filter(shouldBeDisplayed=True)
