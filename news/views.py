@@ -33,6 +33,7 @@ def search_articles(request):
     return render(request, 'news/Portal/SearchArticles.html',
                   context={'articles': articles, 'categories': categories})
 
+
 def articles_by_category(request):
     category = request.GET.get('category', '')
     print(category)
@@ -42,8 +43,9 @@ def articles_by_category(request):
     return render(request, 'news/Portal/SearchArticles.html',
                   context={'articles': articles, 'categories': categories})
 
+
 def view_article(request, slug):
-    # categories = Category.objects.filter(shouldBeDisplayed=True)
+    categories = Category.objects.filter(shouldBeDisplayed=True)
     article = Article.objects.get(slug=slug)
     articles = Article.objects.filter(
         (Q(category__description=article.category.description) & ~Q(id=article.id)))
@@ -51,8 +53,11 @@ def view_article(request, slug):
     article.viewCount += 1
     article.save()
 
-    return render(request, 'news/Portal/ViewArticle.html', context={'article': article,
-                                                                    'articles': articles})
+    return render(request, 'news/Portal/ViewArticle.html', context={
+        'article': article,
+        'articles': articles,
+        'categories': categories
+    })
 
 
 def login(request):

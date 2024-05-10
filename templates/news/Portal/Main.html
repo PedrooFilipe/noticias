@@ -39,7 +39,7 @@
             <li class="sm:inline mx-1"><a href={% url 'index' %}>INÍCIO</a></li>
             <li class="sm:inline mx-1"><a href={% url 'searchArticles' %}>NOTÍCIAS</a></li>
             {% for category in categories %}
-                <li class="sm:inline mx-1"><a href="category?category={{ category.description }}">{{ category.description }}</a></li>
+                <li class="sm:inline mx-1"><a href="{% url 'articlesByCategory' %}?category={{ category.description }}">{{ category.description }}</a></li>
             {% endfor %}
         </ul>
     </div>

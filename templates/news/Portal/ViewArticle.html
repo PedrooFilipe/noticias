@@ -1,65 +1,31 @@
+{% extends 'news/Portal/Main.html' %}
 {% load static %}
-<!DOCTYPE html >
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="{% static 'css/viewArticle.css' %}">
-    <script src="https://kit.fontawesome.com/83ffba3676.js" crossorigin="anonymous"></script>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Viga&display=swap" rel="stylesheet">
-    <title>Inicio</title>
-</head>
+{% block content %}
+<div class="lg:w-10/12 lg:my-0 lg:mx-auto lg:flex lg:justify-between">
 
-<body>
-
-<header>
-    <div class="header-content">
-        <a href={% url 'index' %}>
-            <img src="{% static 'img/logo.svg' %}">
-        </a>
-        <form class="form-search" autocomplete="off">
-            <input type="text" name="search">
-            <button>Pesquisar</button>
-        </form>
-    </div>
-
-</header>
-
-<nav>
-    <div class="menu-container">
-        <ul>
-            <li><a href={% url 'index' %}>INÍCIO</a></li>
-            <li><a href="#">NOTÍCIAS</a></li>
-            {% for category in categories %}
-                <li><a href="#">{{ category.description }}</a></li>
-            {% endfor %}
-
-        </ul>
-    </div>
-
-</nav>
-
-<div class="view-container">
-
-    <main>
+    <main class="w-4/5">
         <h1>{{ article.title }}</h1>
         <h2>{{ article.subtitle }}</h2>
 
-        <img src={{ article.thumb.url }}/>
+        <img class=" rounded-md lg:w-[800px] lg:h-[400px]" src={{ article.thumb.url }}/>
 
-        <p>
-            {{ article.text|linebreaks }}
+        <div class="w-4/5">
+            <p>
+            {{ article.text|safe }}
         </p>
+        </div>
+
     </main>
 
     <aside>
 
         {% for article in articles %}
-
+            <header>
+                <h1>Veja também</h1>
+            </header>
             <div class="aside-new">
-                <img src={{ article.thumb.url }}>
+                <img class="rounded-md lg:w-[270px] lg:h-[180px]" src={{ article.thumb.url }}>
                 <h3>{{ article.title }}</h3>
             </div>
 
@@ -67,6 +33,4 @@
 
     </aside>
 </div>
-
-</body>
-</html>
+{% endblock content %}

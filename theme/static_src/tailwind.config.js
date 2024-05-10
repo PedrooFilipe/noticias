@@ -42,7 +42,12 @@ module.exports = {
         // '../../**/*.py'
     ],
     theme: {
-        extend: {},
+        extend: {
+            fontFamily: {
+                roboto: ['Roboto', 'sans-serif'],
+                openSans: ['Open Sans', 'sans-serif']
+            }
+        },
     },
     plugins: [
         /**

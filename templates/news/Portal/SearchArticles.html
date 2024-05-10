@@ -13,7 +13,7 @@
 
         {% if request.GET.category %}
             <div class="mb-5">
-                <p class="text-2xl">Categoria selecionada: {{ request.GET.category }}</p>
+                <p class="text-2xl font-roboto">Categoria selecionada: {{ request.GET.category }}</p>
             </div>
         {% endif %}
 
@@ -32,8 +32,8 @@
                                      src={{ article.thumb.url }}/>
                                 <div class="lg:max-w-[500px]">
                                     <span class="category-span">{{ article.category.description }}</span>
-                                    <p class="text-xl">{{ article.title }}</p>
-                                    <p class="hidden lg:block text-sm text-gray-400">{{ article.subtitle }}</p>
+                                    <p class="text-xl font-roboto font-semibold">{{ article.title }}</p>
+                                    <p class="font-robo hidden lg:block text-sm text-gray-400">{{ article.subtitle }}</p>
                                 </div>
                             </div>
                         </a>

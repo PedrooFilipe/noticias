@@ -1,4 +1,5 @@
 from django.db import models
+from ckeditor.fields import RichTextField
 
 
 # Create your models here.
@@ -12,7 +13,7 @@ class Category(models.Model):
 class Article(models.Model):
     title = models.CharField(max_length=100)
     subtitle = models.CharField(max_length=100, null=True)
-    text = models.TextField()
+    text = RichTextField(blank=True, null=True)
     slug = models.TextField(50)
     posted = models.DateTimeField(null=True)
     thumb = models.ImageField(upload_to='img', null=True)

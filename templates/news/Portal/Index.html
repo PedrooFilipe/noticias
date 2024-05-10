@@ -2,9 +2,9 @@
 {% load static %}
 {% block content %}
 
-    <div class="flex flex-col justify-center items-center lg:flex-row lg:items-start">
+    <div class="flex flex-col justify-center items-center lg:flex-row lg:items-start lg:my-0 lg:mx-auto lg:w-10/12">
 
-        <main class="flex flex-col items-center mt-4 md:w-10/12 lg:w-6/12 lg:mt-4">
+        <main class="flex flex-col items-center mt-4 md:w-10/12 lg:mt-4 lg:w-3/5">
             <a class="flex flex-col w-11/12 lg:w-full" href={% url 'viewArticle' highlight.slug %}>
                 <img class="rounded-md md:w-full md:h-[400px]" src={{ highlight.thumb.url }}/>
                 <span class="rounded-sm w-fit text-xs bg-slate-400 text-white p-1 mt-1 md:hidden lg:hidden">DESTAQUE</span>
@@ -13,7 +13,7 @@
         </main>
 
         <aside class="flex flex-col items-center md:mt-7 md:items-start md:flex-row md:w-10/12
-                lg:flex lg:flex-col lg:w-3/12 lg:h-full lg:gap-7 lg:mt-4 lg:ml-5">
+                lg:flex lg:flex-col lg:w-2/5 lg:h-full lg:gap-7 lg:mt-4 lg:ml-5">
             {% for article in articles %}
 
                 <div class="w-11/12 lg:w-full">
@@ -23,7 +23,7 @@
                                  src={{ article.thumb.url }}>
                             <div class="sm:mx-3 w-full flex flex-col md:items-center mt-1 lg:items-start">
                                 <span class="w-fit rounded-sm text-xs bg-slate-400 text-white p-1 lg:p-1.5">{{ article.category.description }}</span>
-                                <span class="text-justify lg:text-sm 2xl:text-base">{{ article.title }}</span>
+                                <span class="lg:text-sm 2xl:text-base font-roboto font-semibold">{{ article.title }}</span>
                             </div>
 
                         </div>
